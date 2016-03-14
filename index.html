@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <!-- CUSTOMIZE THIS! -->
-<title>Computerphilologie</title>
+<title>TXM-Tutorial</title>
 <meta name="author" content="Christof Schöch">
 <!-- END -->
 <meta name="description" content="Slides">
@@ -35,7 +35,7 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
 
 <section data-markdown>
 <script type="text/template">
-# Computerphilologie: Überblick
+# TXM-Tutorial
 <hr/>
 <br/>
 <p>Workshop Digitale Forschungsmethoden in der Romanistik</p>
@@ -50,42 +50,102 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
 <section data-markdown>
 <script type="text/template">
 ## Überblick
-1. Computerphilologie
-2. Texterzeugung
-3. Textanalyse
-4. Weiterführendes
+1. Einzelne Funktionen
+2. Verschiedene Suchmodi
+3. Erweiterte Suchen
+4. Wildcards und Symbole
+5. Strukturierung eines Korpus
+6. Vergleichende Abfragen
 </script>
 </section>
+
+<section data-markdown>
+<script type="text/template">
+## Textsammlung als Beispiel
+* 12 englische Romane von Arthur Conan Doyle
+* Aus verschiedenen Jahrzehnten und verschiedenen Untergattungen
+</script>
+</section>
+
 
 <section>
 	
 <section data-markdown>
 <script type="text/template">
-# 1. Was ist Computerphilologie?
+# 1. Einzelne Funktionen
 </script>
 </section>
 
 <section data-markdown>
 <script type="text/template">
-## Verortung der Computerphilologie
-<p><img height="500" data-src="img/verortung.jpg"></img></p>
+## Lexique
+Liste aller Wortformen, die im Korpus vorkommen, alphabetisch oder nach Frequenz sortierbar. Nützlich, um besonders häufige und besonders seltene Wörter festzustellen.
+* Sortierbar nach Alphabet oder Frequenz
 </script>
 </section>
 
 <section data-markdown>
 <script type="text/template">
-## Computerphilologie
-* Literaturwissenschaft: Erfassen, Erzeugen, Anreichern, Analyse, Interpretation, Speicherung und Dissemination von (literarischen) Texten
-* Computerphilologie: Literaturwissenschaft auf Grundlage digitaler Textdaten und mit Hilfe algorithmischer Werkzeuge und Methoden.
-<p><small>(Taxonomie: https://github.com/dhtaxonomy/TaDiRAH)</small></p>
+## Index
+Abfrage der Frequenz einer bestimmten Wortform (oder anderer Suchbegriffe) im Korpus. 
+* Man kann einstellen, welche Information als "pivot" (das im Zentrum stehende Element) angezeigt werden soll: die Wortform, das Lemma, oder das POS-Tag; oder mehrere dieser Informationen.
+* Es werden die Treffer und ihre Frequenz angezeigt; man kann von hier aus weitere Sichten ansteuern (siehe unten)
 </script>
 </section>
 
 <section data-markdown>
 <script type="text/template">
-## Zwei zentrale Bereiche der Computerphilologie
-* Erzeugen/Anreichern: Digitalisierung, (digitale) Editionen, Textsammlungen, Korpora
-* Analysieren: Stil, Inhalt, Räumlichkeit, Figurennetzwerke, Gattungen, etc.
+## Concordance
+Suche nach dem Kontext einer bestimmten Wortform (oder anderer Suchbegriffe). 
+* Hier wird das Suchwort im Kontext angezeigt, also mit einigen Wörtern, die davor stehen und die folgen. Ganz links steht, in welchem Text der Treffer jeweils gefunden wurde. 
+* Auch hier kann man einstellen, welche Informationen als "pivot" angezeigt werden sollen. Die Sortierung kann variiert werden. </script>
+</section>
+
+<section data-markdown>
+<script type="text/template">
+## Cooccurrences
+Suche nach den Wortformen, die oft gemeinsam mit einer bestimmten Wortform vorkommen. Man kann nach verschiedenen Kriterien sortieren:
+* `fréquence`: absolute Häufigkeit der kookurrierenden Wörter; abhängig von der Textlänge.
+* `cofréquence`: absolute Häufigkeit, mit der das Suchwort und das gefundene Wort gemeinsam vorkommen. 
+* `indice`: Maß für den Grad an Spezifik, den eine Kookurrenz von zwei Wörtern hat; dies ist die am stärksten aussagekräftige Angabe. 
+* `distance`: durchschnittlicher Abstand zwischen dem Suchwort und dem gefundenen Wort im Textverlauf. 
+</script>
+</section>
+
+
+</section>
+<section>
+
+
+<section data-markdown>
+<script type="text/template">
+# 2. Verschiedene Suchmodi (Index)
+</script>
+</section>
+
+<section data-markdown>
+<script type="text/template">
+## Wortformen
+Suche nach graphischen Wortformen.
+* `"worked"`  - einfachste Variante; findet die Anzahl des Wortes "worked"
+* `[word="worked"]` - ebenso, aber diese Formulierung ist besser erweiterbar (siehe unten)</script>
+</section>
+
+<section data-markdown>
+<script type="text/template">
+## Lemmata
+Suche nach allen Worten, die einer bestimmten Grundform zugehören. 
+* `[enlemma="mouse"]` – findet alle Stellen, an denen das Lemma "mouse" in seinen verschiedenen Formen vorkommt: "mouse" und "mice".</script>
+* (Sprachabhängig! `enlemma`, `frlemma`, `eslemma`, etc.)
+</section>
+
+<section data-markdown>
+<script type="text/template">
+## Part-of-Speech
+Suche nach allen Wortformen, die einer bestimmten grammatikalischen Kategorie (POS) zugehören.
+* `[enpos="VV"]` - Suche nach Verben. Findet “was”, “is”, “had”, etc. 
+* `[enpos="JJ"]` – findet beliebige Adjektive vorkommt: "other", "great", "little". 
+* (Das Inventar der POS-Tags ist ebenfalls sprachabhängig)
 </script>
 </section>
 
@@ -94,57 +154,33 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
 
 <section data-markdown>
 <script type="text/template">
-# 2. Erzeugen/Anreichern literarischer Texte 
+# 3. Erweiterte Suchen
 </script>
 </section>
 
 <section data-markdown>
 <script type="text/template">
-## Aspekte des Erzeugens/Anreichern von Text 
-* Digitalisierung (Scannen, OCR)
-* Digitale Texteditionen und Textsammlungen
-* Linguistisch annotierte Korpora
-* Editionsphilologie: Stemmata, Kollationierung
+## Folge mehrerer Suchbegriffe
+Ein Suchbegriff, gefolgt von einem weiteren Suchbegriff. Solche Abfragen können mit dem Query Editor ("assistant de requêtes") erstellt werden; dort auf "mot supplémentaire" klicken.
+* `[word="she"][word="did"]` – Findet die Anzahl der Stellen, an denen "she did" vorkommt.
+Man kann hier auch verschiedene Suchmodi kombinieren: 
+* `[enpos="JJ"][enlemma="house"]` - Findet Treffer, bei denen auf ein Adjektiv das Lemma "house" folgt. Bspw.: "great house", "empty house" und "old house".
 </script>
 </section>
 
 <section data-markdown>
 <script type="text/template">
-## Optical Character Recognition: FineReader
-<img height="500" data-src="img/finereader.png"></img>
-<p>http://www.abbyy.com/de-de/finereader</p>
-</script>
+## Suchbegriffe in bestimmtem Abstand
+Mehrere Suchbegriffe, mit Minimal- und Maximalabstand dazwischen:
+* `[enpos="VV"][]{0,5}[enlemma="money"]` – Findet alle Kombinationen eines Verbs, gefolgt von null bis fünf anderen Worten, gefolgt von dem Lemma "money"; 
+* Beispielsweise: "take his money" und "add to the money" sowie "do to raise the money". </script>
 </section>
 
 <section data-markdown>
 <script type="text/template">
-## XML/TEI-Dateien bearbeiten: oXygen
-<img height="500" data-src="img/oxygen.png"></img>
-<p>https://www.oxygenxml.com</p>
-</script>
-</section>
-
-<section data-markdown>
-<script type="text/template">
-## XML/TEI-Dateien bearbeiten: jEdit
-<img height="500" data-src="img/jedit.png"></img>
-<p>http://www.jedit.org/</p>
-</script>
-</section>
-
-<section data-markdown>
-<script type="text/template">
-## Annotation: CATMA</h3>
-<img height="500" data-src="img/TA_CATMA.jpg"></img>
-<p><a href="http://www.catma.de/">http://www.catma.de/</a></p>
-</script>
-</section>
-
-<section data-markdown>
-<script type="text/template">
-## Kollationierung: Juxta
-<img height="500" data-src="img/TA_Juxta.jpg"></img>
-<p>http://www.juxtasoftware.org</p>
+## Kombination von Kriterien für ein Element
+Verknüpfung von Kriterien unterschiedlicher Art bezogen auf ein einziges Element, bspw. Information über die Graphie eines Wortes mit seiner grammatikalischen Kategorie:
+*  `[word="dog" & enpos="VV"]` – Findet alle Wörter, die "dog" lauten UND ein Verb sind (to dog = jemanden verfolgen), d.h. schließt alle diejenigen Fälle aus, in denen "dog" als Substantiv verwendet wird.
 </script>
 </section>
 
@@ -153,123 +189,116 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
 
 <section data-markdown>
 <script type="text/template">
-# 3. Analyse literarischer Texte
+# 4. Wildcards und Symbole
 </script>
 </section>
 
 <section data-markdown>
 <script type="text/template">
-## Perspektiven der digitalen Textanalyse
-* Quantitative vs. qualitative Verfahren
-* Klassifikation vs. Clustering
-* Informationsextraktion vs. Datenvisualisierung
-* GUI vs. CLI
+## Einige nützliche Wildcards: 
+* `.` Punkt = jedes beliebige Wort-Zeichen (aber keine Leerzeichen etc.)
+* `*` Stern = das direkt vorangehende Zeichen soll null mal oder beliebig oft auftauchen
+* `+` Plus = das direkt vorangehende Zeichen soll mindestens einmal oder beliebig oft auftauchen
+* `?` Fragezeichen = das direkt vorangehende Zeichen soll entweder null mal oder einmal auftauchen
+</section>
+
+<section data-markdown>
+<script type="text/template">
+## Beispielabfragen:
+* `[word="go.?"]` - Wildcard innerhalb des Elements. Wort, das "go" und keinen oder einen weiterer Buchstabe hat; findet: "go" und "got", aber nicht "goes" (zwei weitere Buchstaben)
+* `[word="f.*ic"]` – Wörter, die mit "f" anfangen, dann mehrere beliebige Zeichen haben und mit "ic" aufhören; findet: "fabric", "fanatic" und "fantastic", etc.
+* `[word=".*ic" & enpos="JJ"]` – Wörter, die auf "ic" enden und Adjektive sind; findet: bspw. "acrobatic", "aeronautic" und "angelic", etc.
 </script>
 </section>
 
 <section data-markdown>
 <script type="text/template">
-## Natural Language Processing: NLTK
-<img height="500" data-src="img/nltk.png"></img>
-<p>http://www.nltk.org</p>
+## Einige nützliche Symbole: 
+* `{x}` Numerische Angabe: Gibt an, dass das vorangehende Zeichen oder Element genau x-mal vorkommen soll.
+* `{x,y}` Numerischer Bereich: Gibt an, dass das vorangehende Zeichen oder Element zwischen x-mal und y-mal vorkommen soll.
+* `%c` Zusatz nach den Anführungszeichen: die Groß- und Kleinschreibung wird ignoriert.
+* `%d` Zusatz nach den Anführungszeichen: die Akzente und andere diakritischen Zeichen werden ignoriert. Kann auch als `%cd` kombiniert werden.</script>
+</section>
+
+
+<section data-markdown>
+<script type="text/template">
+## Beispielabfragen:
+* `[word="heaven"%c]` – Ignoriert Groß- und Kleinschreibung; findet: "heaven" (physisch) und "Heaven" (metaphysisch / am Satzanfang).
+* `[word="the"][enpos="JJ"]{2}[enpos="NN"]` - Wildcard auf Ebene der Einheiten; Sequenzen, in denen erst das Wort "the" kommt, dann genau zwei Adjektive, dann ein Substantiv; findet bspw. "the deep blue sky" oder "the angry old man". 
 </script>
 </section>
 
 <section data-markdown>
 <script type="text/template">
-## Maschinelles Lernen: scikit-learn
-<img height="500" data-src="img/sklearn.png"></img>
-<p>http://scikit-learn.org</p>
+## Suche mit Alternativen
+Mehrere Suchbegriffe alternativ suchen (mit dem "|"-Zeichen)
+* `[word="city|country"]` - Alternativen bezogen auf Einzelwörter; findet jeweils die Stellen, an denen "city" oder "country" vorkommt. 
+* `[enpos="DT|PP"]` - Alternativen bezogen auf die Wortart; Suche nach Artikeln oder Personalpronomina; findet u.a. "the", "a", "it", "you", etc.
 </script>
 </section>
-
-<section data-markdown>
-<script type="text/template">
-## Korpusanalyse: TXM
-<img height="500" data-src="img/TA_TXM.jpg"></img>
-<p>http://textometrie.ens-lyon.fr</p>
-</script>
-</section>
-
-<section data-markdown>
-<script type="text/template">
-## Topic Modeling: MALLET 
-<img height="500" data-src="img/TA_Mallet.png"></img>
-<p>http://mallet.cs.umass.edu/topics.php</p>
-</script>
-</section>
-
-<section data-markdown>
-<script type="text/template">
-## Stilometrie: stylo for R 
-<img height="500" data-src="img/stylo.png"></img>
-<p>https://sites.google.com/site/computationalstylistics/</p>
-
-</script>
-</section>
-
-<section data-markdown>
-<script type="text/template">
-## Netzwerkanalyse: Gephi 
-<img height="500" data-src="img/gephi.jpg"></img>
-<p>https://gephi.org/</p>
-</script>
-</section>
-
-<section data-markdown>
-<script type="text/template">
-## Kartierung: DARIAH Geobrowser
-<img height="500" data-src="img/geobrowser.png"></img>
-<p>https://de.dariah.eu/geobrowser</p>
-</script>
-</section>
-
 
 </section>
 <section>
 
 <section data-markdown>
 <script type="text/template">
-# 4. Weiterführendes
+# 5. Strukturierung eines Korpus
 </script>
 </section>
 
 <section data-markdown>
 <script type="text/template">
-## Lektürehinweise (einführend)
-<small>
-* Jannidis, F. (2010). "Methoden der computergestützten Textanalyse". In Nünning, A. and Nünning, V. (eds), _Methoden der literatur- und kulturwissenschaftlichen Textanalyse_. Stuttgart & Weimar: Metzler, pp. 109–32.
-* Jannidis, F. (2007). "Computerphilologie". In Anz, T. (ed), _Handbuch Literaturwissenschaft_, vol. 2 (Methoden und Theorien). Stuttgart: Metzler, pp. 27–40.
-* Schöch, C. (im Erscheinen). "Ein digitales Textformat für die Literaturwissenschaften. Die Richtlinien der Text Encoding Initiative und ihr Nutzen für Textedition und Textanalyse". _Romanische Studien_.
-
-</small>
-</script>
+## Unter-Korpus definieren
+Eine Teilmenge des Gesamtkorpus. 
+* Rechts-Klick auf `DOYLE`, dort `Sous-Corpus` auswählen. 
+* Dem Unterkorpus einen Namen geben, bspw. "historical". 
+* Im Reiter `simple` bleiben und die Einstellungen anpassen (Structure: `text` – Propriété: `subgenre`). 
+* Aus der sich öffnenden Liste der Genres "historical" auswählen, OK klicken. 
+* Für andere Kriterien das Vorgehen entsprechend anpassen oder die feiner zu steuernden Verfahren `assisté` oder `avancé` wählen.</script>
 </section>
 
 <section data-markdown>
 <script type="text/template">
-## Lektürehinweise (vertiefend)
-<small>
-* Burnard, L. (2014). _What Is the Text Encoding Initiative?_. Marseille: OpenEdition Press.
-* Shillingsburg, P. (2006). _From Gutenberg to Google. Electronic Representations of Literary Texts_. Cambridge: Cambridge Univ. Press.
-* Alpaydin, E. (2010). _Introduction to Machine Learning_. 2nd ed. Cambridge, Mass: MIT Press.
-* Ramsay, S. (2011). _Reading Machines : Toward an Algorithmic Criticism_. Urbana  Ill.: University of Illinois Press.
-
-</small>
+## Korpus partitionieren
+Das Korpus intern strukturieren.
+* Rechts-Klick auf `DOYLE`, dort `Partition` auswählen. 
+* Dem geteilten Korpus einen Namen geben, bspw. "Jahrzehnte". 
+* Im Reiter `simple` bleiben und die Einstellungen passend einrichten: Structure: `text` – Propriété: `decades`). OK klicken.
+* Hier wird Gesamtkorpus automatisch nach den relevanten Klassen aufgeteilt.
 </script>
+</section>
+
+</section>
+<section>
+
+<section data-markdown>
+<script type="text/template">
+# 6. Vergleichende Abfragen</script>
 </section>
 
 <section data-markdown>
 <script type="text/template">
-## Online-Ressourcen
-<small>
-* Catalogue of Digital Scholarly Editions: http://www.digitale-edition.de/index.html
-* Textdaten Romanistik Wiki: http://wikis.fu-berlin.de/display/tdr/
-* Doing Digital Humanities Bibliography: https://www.zotero.org/groups/doing_digital_humanities_-_a_dariah_bibliography
+## Progression
+* Rechtsklick auf einen Treffer (in Index oder Lexique)
+* Auf `Envoyer vers progression` klicken
+* Type de graphe: `cumulatif` auswählen (zeigt die Trefferzahlen kumulativ, d.h. als ansteigende Kurve an; die Steigung der Kurve zeigt dann die lokale Frequenz an.)
+* Échelle des bandeaux: "0.5" einstellen (oder zwischen 0.2 und 1.0 variieren)
+* Unité strucurelle: `text` auswählen
+* Propriété: `subgenre` oder `title` auswählen; OK klicken!</script>
+</section>
 
-</small>
+<section data-markdown>
+<script type="text/template">
+## Spécificités
+* Auf eine Partition klicken, dann Rechtsklick
+* Auf `Spécificités` klicken
+* Propriété definieren (bspw. `word`)
+* `Focus de partie`: leer lassen für Vergleich aller Teile; oder einen Teil auswählen. OK klicken.
 </script>
 </section>
+
+
 </section>
 
 <section data-markdown>
