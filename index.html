@@ -38,8 +38,9 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
 # TXM-Tutorial
 <hr/>
 <br/>
-<p>Workshop Digitale Forschungsmethoden in der Romanistik</p>
-<p>Forum Junge Romanistik 2016, Universität Würzburg</p>
+<br/>
+<br/>
+<p>Workshop RomaNA III, Bonn, Juli 2017</p>
 <br/>
 <hr/>
 <p>Christof Schöch<br/>CLiGS - Universität Würzburg</p>
@@ -59,17 +60,30 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
 </script>
 </section>
 
+<section>
+
+
 <section data-markdown>
 <script type="text/template">
 ## Textsammlung als Beispiel
-* 12 englische Romane von Arthur Conan Doyle
+* 36 französische Romane des 19. Jahrhunderts
 * Aus verschiedenen Jahrzehnten und verschiedenen Untergattungen
+* Download: https://zenodo.org/record/44547 (DOI: 10.5281/zenodo.44547)
+</script>
+</section>
+
+<section data-markdown>
+<script type="text/template">
+## Tagsets von TreeTagger
+* für Französisch und Spanisch
+* Download: https://github.com/christofs/txm-tutorial/raw/gh-pages/TreeTagger_Tagsets_FR-ES.pdf
 </script>
 </section>
 
 
+</section>
 <section>
-	
+    
 <section data-markdown>
 <script type="text/template">
 # 1. Einzelne Funktionen
@@ -79,7 +93,8 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
 <section data-markdown>
 <script type="text/template">
 ## Lexique
-Liste aller Wortformen, die im Korpus vorkommen, alphabetisch oder nach Frequenz sortierbar. Nützlich, um besonders häufige und besonders seltene Wörter festzustellen.
+Liste aller Wortformen, die im Korpus vorkommen, alphabetisch oder nach Frequenz sortierbar.
+* Nützlich, um besonders häufige und besonders seltene Wörter festzustellen.
 * Sortierbar nach Alphabet oder Frequenz
 </script>
 </section>
@@ -127,15 +142,15 @@ Suche nach den Wortformen, die oft gemeinsam mit einer bestimmten Wortform vorko
 <script type="text/template">
 ## Wortformen
 Suche nach graphischen Wortformen.
-* `"worked"`  - einfachste Variante; findet die Anzahl des Wortes "worked"
-* `[word="worked"]` - ebenso, aber diese Formulierung ist besser erweiterbar (siehe unten)</script>
+* `"travaillait"`  - einfachste Variante; findet die Anzahl des Wortes "worked"
+* `[word="travaillait"]` - ebenso, aber diese Formulierung ist besser erweiterbar (siehe unten)</script>
 </section>
 
 <section data-markdown>
 <script type="text/template">
 ## Lemmata
 Suche nach allen Worten, die einer bestimmten Grundform zugehören. 
-* `[enlemma="mouse"]` – findet alle Stellen, an denen das Lemma "mouse" in seinen verschiedenen Formen vorkommt: "mouse" und "mice".</script>
+* `[frlemma="aller"]` – findet alle Stellen, an denen das Lemma "aller" in seinen verschiedenen Formen vorkommt: "allait" und "irons" etc.</script>
 * (Sprachabhängig! `enlemma`, `frlemma`, `eslemma`, etc.)
 </section>
 
@@ -143,8 +158,8 @@ Suche nach allen Worten, die einer bestimmten Grundform zugehören.
 <script type="text/template">
 ## Part-of-Speech
 Suche nach allen Wortformen, die einer bestimmten grammatikalischen Kategorie (POS) zugehören.
-* `[enpos="VV"]` - Suche nach Verben. Findet “was”, “is”, “had”, etc. 
-* `[enpos="JJ"]` – findet beliebige Adjektive vorkommt: "other", "great", "little". 
+* `[frpos="NOM"]` - Suche nach Verben. Findet "maison", "guerre", "crime", etc. 
+* `[frpos="ADJ"]` – findet beliebige Adjektive vorkommt: "grand", "élégant", etc. 
 * (Das Inventar der POS-Tags ist ebenfalls sprachabhängig)
 </script>
 </section>
@@ -161,10 +176,11 @@ Suche nach allen Wortformen, die einer bestimmten grammatikalischen Kategorie (P
 <section data-markdown>
 <script type="text/template">
 ## Folge mehrerer Suchbegriffe
-Ein Suchbegriff, gefolgt von einem weiteren Suchbegriff. Solche Abfragen können mit dem Query Editor ("assistant de requêtes") erstellt werden; dort auf "mot supplémentaire" klicken.
-* `[word="she"][word="did"]` – Findet die Anzahl der Stellen, an denen "she did" vorkommt.
+Ein Suchbegriff, gefolgt von einem weiteren Suchbegriff.
+* Solche Abfragen können mit dem Query Editor ("assistant de requêtes") erstellt werden; dort auf "mot supplémentaire" klicken.
+* `[word="elle"][word="dit"]` – Findet die Anzahl der Stellen, an denen "elle dit" vorkommt.
 Man kann hier auch verschiedene Suchmodi kombinieren: 
-* `[enpos="JJ"][enlemma="house"]` - Findet Treffer, bei denen auf ein Adjektiv das Lemma "house" folgt. Bspw.: "great house", "empty house" und "old house".
+* `[enlemma="maison"][enpos="ADJ"]` - Findet Treffer, bei denen auf das Lemma "maison" ein Adjektiv folgt. Bspw.: "maison paternelle", "maison jaune" und "maisons basses".
 </script>
 </section>
 
@@ -172,15 +188,16 @@ Man kann hier auch verschiedene Suchmodi kombinieren:
 <script type="text/template">
 ## Suchbegriffe in bestimmtem Abstand
 Mehrere Suchbegriffe, mit Minimal- und Maximalabstand dazwischen:
-* `[enpos="VV"][]{0,5}[enlemma="money"]` – Findet alle Kombinationen eines Verbs, gefolgt von null bis fünf anderen Worten, gefolgt von dem Lemma "money"; 
-* Beispielsweise: "take his money" und "add to the money" sowie "do to raise the money". </script>
+* `[frpos="VER.*"][]{0,5}[frlemma="argent"]` – Findet alle Kombinationen eines Verbs, gefolgt von null bis fünf anderen Worten, gefolgt von dem Lemma "argent"; 
+* Beispielsweise: "dépense mon argent" und "avais beaucoup d'argent". </script>
 </section>
 
 <section data-markdown>
 <script type="text/template">
 ## Kombination von Kriterien für ein Element
-Verknüpfung von Kriterien unterschiedlicher Art bezogen auf ein einziges Element, bspw. Information über die Graphie eines Wortes mit seiner grammatikalischen Kategorie:
-*  `[word="dog" & enpos="VV"]` – Findet alle Wörter, die "dog" lauten UND ein Verb sind (to dog = jemanden verfolgen), d.h. schließt alle diejenigen Fälle aus, in denen "dog" als Substantiv verwendet wird.
+Verknüpfung von Kriterien unterschiedlicher Art bezogen auf ein einziges Element
+* Bspw. Information über die Graphie eines Wortes mit seiner grammatikalischen Kategorie:
+*  `[word="marche" & frpos="VER.*"]` – Findet alle Wörter, die "marche" lauten UND ein Verb sind, d.h. schließt alle diejenigen Fälle aus, in denen "marche" als Substantiv verwendet wird.
 </script>
 </section>
 
@@ -205,9 +222,9 @@ Verknüpfung von Kriterien unterschiedlicher Art bezogen auf ein einziges Elemen
 <section data-markdown>
 <script type="text/template">
 ## Beispielabfragen:
-* `[word="go.?"]` - Wildcard innerhalb des Elements. Wort, das "go" und keinen oder einen weiterer Buchstabe hat; findet: "go" und "got", aber nicht "goes" (zwei weitere Buchstaben)
-* `[word="f.*ic"]` – Wörter, die mit "f" anfangen, dann mehrere beliebige Zeichen haben und mit "ic" aufhören; findet: "fabric", "fanatic" und "fantastic", etc.
-* `[word=".*ic" & enpos="JJ"]` – Wörter, die auf "ic" enden und Adjektive sind; findet: bspw. "acrobatic", "aeronautic" und "angelic", etc.
+* `[word="to.?"]` - Wildcard innerhalb des Elements. Wort, das "to" und keinen oder einen weiterer Buchstabe hat; findet: "toi" und "ton", aber nicht "toit" (zwei weitere Buchstaben)
+* `[word="f.*ique"]` – Wörter, die mit "f" anfangen, dann mehrere beliebige Zeichen haben und mit "ique" aufhören; findet: "fabrique", "fanatique" und "fantastique', etc.
+* `[word=".*ique" & frpos="ADJ"]` – Wörter, die auf "ique" enden und Adjektive sind; findet: bspw. "unique", "magnifique" und "domestique", etc.
 </script>
 </section>
 
@@ -224,8 +241,8 @@ Verknüpfung von Kriterien unterschiedlicher Art bezogen auf ein einziges Elemen
 <section data-markdown>
 <script type="text/template">
 ## Beispielabfragen:
-* `[word="heaven"%c]` – Ignoriert Groß- und Kleinschreibung; findet: "heaven" (physisch) und "Heaven" (metaphysisch / am Satzanfang).
-* `[word="the"][enpos="JJ"]{2}[enpos="NN"]` - Wildcard auf Ebene der Einheiten; Sequenzen, in denen erst das Wort "the" kommt, dann genau zwei Adjektive, dann ein Substantiv; findet bspw. "the deep blue sky" oder "the angry old man". 
+* `[word="dieu"%c]` – Ignoriert Groß- und Kleinschreibung; findet: "dieu" und "Dieu" sowie DIEU.
+* `[word="la"][frpos="ADJ"]{2}[frpos="NOM"]` - Wildcard auf Ebene der Einheiten; Sequenzen, in denen erst das Wort "la" kommt, dann genau zwei Adjektive, dann ein Substantiv; findet bspw. "la pauvre jeune fille" oder "la douce petite voix". 
 </script>
 </section>
 
@@ -233,8 +250,8 @@ Verknüpfung von Kriterien unterschiedlicher Art bezogen auf ein einziges Elemen
 <script type="text/template">
 ## Suche mit Alternativen
 Mehrere Suchbegriffe alternativ suchen (mit dem "|"-Zeichen)
-* `[word="city|country"]` - Alternativen bezogen auf Einzelwörter; findet jeweils die Stellen, an denen "city" oder "country" vorkommt. 
-* `[enpos="DT|PP"]` - Alternativen bezogen auf die Wortart; Suche nach Artikeln oder Personalpronomina; findet u.a. "the", "a", "it", "you", etc.
+* `[word="ville|campagne"]` - Alternativen bezogen auf Einzelwörter; findet jeweils die Stellen, an denen "ville" oder "campagne" vorkommt. 
+* `[frpos="DET:*|PRO.*"]` - Alternativen bezogen auf die Wortart; Suche nach Artikeln oder Personalpronomina; findet u.a. "il", "qui", "se", "vous", "je", etc.
 </script>
 </section>
 
@@ -251,8 +268,8 @@ Mehrere Suchbegriffe alternativ suchen (mit dem "|"-Zeichen)
 <script type="text/template">
 ## Unter-Korpus definieren
 Eine Teilmenge des Gesamtkorpus. 
-* Rechts-Klick auf `DOYLE`, dort `Sous-Corpus` auswählen. 
-* Dem Unterkorpus einen Namen geben, bspw. "historical". 
+* Rechts-Klick auf `ROMAN19`, dort `Sous-Corpus` auswählen. 
+* Dem Unterkorpus einen Namen geben, bspw. "genres". 
 * Im Reiter `simple` bleiben und die Einstellungen anpassen (Structure: `text` – Propriété: `subgenre`). 
 * Aus der sich öffnenden Liste der Genres "historical" auswählen, OK klicken. 
 * Für andere Kriterien das Vorgehen entsprechend anpassen oder die feiner zu steuernden Verfahren `assisté` oder `avancé` wählen.</script>
@@ -262,7 +279,7 @@ Eine Teilmenge des Gesamtkorpus.
 <script type="text/template">
 ## Korpus partitionieren
 Das Korpus intern strukturieren.
-* Rechts-Klick auf `DOYLE`, dort `Partition` auswählen. 
+* Rechts-Klick auf `ROMAN19`, dort `Partition` auswählen. 
 * Dem geteilten Korpus einen Namen geben, bspw. "Jahrzehnte". 
 * Im Reiter `simple` bleiben und die Einstellungen passend einrichten: Structure: `text` – Propriété: `decades`). OK klicken.
 * Hier wird Gesamtkorpus automatisch nach den relevanten Klassen aufgeteilt.
@@ -307,7 +324,7 @@ Das Korpus intern strukturieren.
 <br/>
 <br/>
 <br/>
-<p>Christof Schöch, 2016</p>
+<p>Christof Schöch, 2016-2017</p>
 <p>http://www.christof-schoech.de</p>
 <hr/>
 <p>Lizenz: Creative Commons Attribution 4.0 International</p>
@@ -326,21 +343,21 @@ Das Korpus intern strukturieren.
 // Full list of configuration options available at:
 // https://github.com/hakimel/reveal.js#configuration
 Reveal.initialize({
-	controls: true,
-	progress: true,
-	history: true,
-	center: true,
-	transition: 'slide', // none/fade/slide/convex/concave/zoom
-	// Optional reveal.js plugins
-	dependencies: [
-		{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
-		{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-		{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-		{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
-		{ src: 'plugin/zoom-js/zoom.js', async: true },
-		{ src: 'plugin/notes/notes.js', async: true }
-		]
-	});
+    controls: true,
+    progress: true,
+    history: true,
+    center: true,
+    transition: 'slide', // none/fade/slide/convex/concave/zoom
+    // Optional reveal.js plugins
+    dependencies: [
+        { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+        { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+        { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+        { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+        { src: 'plugin/zoom-js/zoom.js', async: true },
+        { src: 'plugin/notes/notes.js', async: true }
+        ]
+    });
 </script>
 </body>
 </html>
