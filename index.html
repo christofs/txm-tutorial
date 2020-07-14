@@ -40,11 +40,11 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
 <br/>
 <br/>
 <br/>
-<p>Workshop RomaNA III, Bonn, Juli 2017</p>
+<p>Zeta-Workshop, Zoom, Juli 2020</p>
 <br/>
 <hr/>
-<p>Christof Schöch<br/>CLiGS - Universität Würzburg</p>
-<p><img height="50" data-src="img/basics/UWUE.jpg"></img>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img height="100" data-src="img/basics/CLiGS.jpg"></img>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img height="50" data-src="img/basics/BMBF.jpg"></img></p>
+<br/>
+<p>Christof Schöch</p>
 </script>
 </section>
 
@@ -65,10 +65,13 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
 
 <section data-markdown>
 <script type="text/template">
-## Textsammlung als Beispiel
-* 36 französische Romane des 19. Jahrhunderts
-* Aus verschiedenen Jahrzehnten und verschiedenen Untergattungen
-* Download: https://zenodo.org/record/44547 (DOI: 10.5281/zenodo.44547)
+## Textsammlungen als Beispiel
+* ELTeC-fra: 100 franz. Romane: https://doi.org/10.5281/zenodo.3939542
+* Textbox: 36 franz. Romane: https://doi.org/10.5281/zenodo.44547
+* Conan Doyle: https://doi.org/10.5281/zenodo.802889
+* Comédie humaine: https://doi.org/10.5281/zenodo.3747383
+* Spanisch-amerikanische Romane (Ulrike Henny): https://doi.org/10.5281/zenodo.47218
+
 </script>
 </section>
 
@@ -158,8 +161,8 @@ Suche nach allen Worten, die einer bestimmten Grundform zugehören.
 <script type="text/template">
 ## Part-of-Speech
 Suche nach allen Wortformen, die einer bestimmten grammatikalischen Kategorie (POS) zugehören.
-* `[frpos="NOM"]` - Suche nach Verben. Findet "maison", "guerre", "crime", etc. 
-* `[frpos="ADJ"]` – findet beliebige Adjektive vorkommt: "grand", "élégant", etc. 
+* `[frpos="NOM"]` - Suche nach Substantiven. Findet "maison", "guerre", "crime", etc. 
+* `[frpos="ADJ"]` – findet beliebige Adjektive: "grand", "élégant", etc. 
 * (Das Inventar der POS-Tags ist ebenfalls sprachabhängig)
 </script>
 </section>
@@ -317,6 +320,42 @@ Das Korpus intern strukturieren.
 
 
 </section>
+<section>
+
+<section data-markdown>
+<script type="text/template">
+# 7. Datenimport</script>
+</section>
+
+<section data-markdown>
+<script type="text/template">
+## Binäres Korpus laden
+* File > Load
+* *.txm-Datei auswählen
+* Fertig! 
+</script>
+</section>
+
+
+<section data-markdown>
+<script type="text/template">
+## Plaintext-Korpus importieren
+* File > Import > TXT+CSV
+* Alle TXT-Dateien liegen in einem Ordner
+* Wichtig: Datei "metadata.csv" (erste Spalte "id", Kommas als Separator)
+* Annotation: setzt TreeTagger voraus (Installieren, Verlinken)
+* Import laufen lassen
+</script>
+</section>
+
+
+
+
+
+
+
+
+</section>
 
 <section data-markdown>
 <script type="text/template">
@@ -324,7 +363,7 @@ Das Korpus intern strukturieren.
 <br/>
 <br/>
 <br/>
-<p>Christof Schöch, 2016-2017</p>
+<p>Christof Schöch, 2016-2020</p>
 <p>http://www.christof-schoech.de</p>
 <hr/>
 <p>Lizenz: Creative Commons Attribution 4.0 International</p>
