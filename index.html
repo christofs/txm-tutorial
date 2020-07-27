@@ -127,6 +127,7 @@ Suche nach den Wortformen, die oft gemeinsam mit einer bestimmten Wortform vorko
 * `cofréquence`: absolute Häufigkeit, mit der das Suchwort und das gefundene Wort gemeinsam vorkommen. 
 * `indice`: Maß für den Grad an Spezifik, den eine Kookurrenz von zwei Wörtern hat; dies ist die am stärksten aussagekräftige Angabe. 
 * `distance`: durchschnittlicher Abstand zwischen dem Suchwort und dem gefundenen Wort im Textverlauf. 
+* Kookkurrenz vs. Kollokation: https://www1.ids-mannheim.de/fileadmin/lexik/lehre/engelberg/Webseite_LingMeth/Skript_05.pdf
 </script>
 </section>
 
@@ -153,18 +154,22 @@ Suche nach graphischen Wortformen.
 <script type="text/template">
 ## Lemmata
 Suche nach allen Worten, die einer bestimmten Grundform zugehören. 
-* `[frlemma="aller"]` – findet alle Stellen, an denen das Lemma "aller" in seinen verschiedenen Formen vorkommt: "allait" und "irons" etc.
+* `[enlemma="go"]` - hier werden alle Stellen gefunden, wo das Lemma "go" in verschiedenen Formen vorkommt: Wie z.B. "gone", "went", "going" usw.
+* Klein- und Großschreibung wird hier ignoriert: "Go" wird also auch gefunden;
 * (Sprachabhängig! `enlemma`, `frlemma`, `eslemma`, etc.)</script>
+* `[frlemma="aller"]` – findet alle Stellen, an denen das Lemma "aller" in seinen verschiedenen Formen vorkommt: "allait" und "irons" etc.
 </section>
 
 <section data-markdown>
 <script type="text/template">
 ## Part-of-Speech
 Suche nach allen Wortformen, die einer bestimmten grammatikalischen Kategorie (POS) zugehören.
-* `[frpos="NOM"]` - Suche nach Substantiven. Findet "maison", "guerre", "crime", etc. 
-* `[frpos="ADJ"]` – findet beliebige Adjektive: "grand", "élégant", etc. 
+* `[enpos="NN"]` - findet die Substantive, sortiert nach ihren Häufigkeiten: "man", "hand", "face"
+* `[enpos="JJ"] - findet die Adjektive, wie "great", "old", "good"
 * (Das Inventar der POS-Tags ist ebenfalls sprachabhängig)
 </script>
+* `[frpos="NOM"]` - Suche nach Substantiven. Findet "maison", "guerre", "crime", etc. 
+* `[frpos="ADJ"]` – findet beliebige Adjektive: "grand", "élégant", etc. 
 </section>
 
 </section>
@@ -181,18 +186,26 @@ Suche nach allen Wortformen, die einer bestimmten grammatikalischen Kategorie (P
 ## Folge mehrerer Suchbegriffe
 Ein Suchbegriff, gefolgt von einem weiteren Suchbegriff.
 * Solche Abfragen können mit dem Query Editor ("assistant de requêtes") erstellt werden; dort auf "mot supplémentaire" klicken.
+* `[word="Sherlock"][word="Holmes"]` - gibt die Anzahl der Treffer zurück, wo "Sherlock" gefolgt vom "Holmes" vorkommt; 
+* anderes Beispiel: [word="Baker"][word="Street"]
+* Case-sensitive
+Die verschiedenen Suchkombinationen sind möglich:
+* `[enpos = "JJ"][enlemma="day"]`- Suche nach dem Lemma "day", das auf ein Adjektiv folgt.
+</script>
 * `[word="elle"][word="dit"]` – Findet die Anzahl der Stellen, an denen "elle dit" vorkommt.
 Man kann hier auch verschiedene Suchmodi kombinieren: 
-* `[enlemma="maison"][enpos="ADJ"]` - Findet Treffer, bei denen auf das Lemma "maison" ein Adjektiv folgt. Bspw.: "maison paternelle", "maison jaune" und "maisons basses".
-</script>
+* `[frlemma="maison"][frpos="ADJ"]` - Findet Treffer, bei denen auf das Lemma "maison" ein Adjektiv folgt. Bspw.: "maison paternelle", "maison jaune" und "maisons basses".
 </section>
 
 <section data-markdown>
 <script type="text/template">
 ## Suchbegriffe in bestimmtem Abstand
 Mehrere Suchbegriffe, mit Minimal- und Maximalabstand dazwischen:
+* `[enpos="V.*"][]{0,3}[enlemma="police"]`- findet alle Treffer eines Verbes, gefolgt  von dem Lemma "police" mit Abstand zwischen null und drei Worte
+* z.B. werden folgende Wortkombinationen gefunden: "said the police", "communicated with the police", "known as the British police"
+</script>
 * `[frpos="VER.*"][]{0,5}[frlemma="argent"]` – Findet alle Kombinationen eines Verbs, gefolgt von null bis fünf anderen Worten, gefolgt von dem Lemma "argent"; 
-* Beispielsweise: "dépense mon argent" und "avais beaucoup d'argent". </script>
+* Beispielsweise: "dépense mon argent" und "avais beaucoup d'argent". 
 </section>
 
 <section data-markdown>
@@ -200,8 +213,11 @@ Mehrere Suchbegriffe, mit Minimal- und Maximalabstand dazwischen:
 ## Kombination von Kriterien für ein Element
 Verknüpfung von Kriterien unterschiedlicher Art bezogen auf ein einziges Element
 * Bspw. Information über die Graphie eines Wortes mit seiner grammatikalischen Kategorie:
-*  `[word="marche" & frpos="VER.*"]` – Findet alle Wörter, die "marche" lauten UND ein Verb sind, d.h. schließt alle diejenigen Fälle aus, in denen "marche" als Substantiv verwendet wird.
+* [word="break" & enpos="V.*"] und [word="break" & enpos="N.*"] - im ersten Fall suchen wir nach "break" als Verb und 
+in zweitem Fall nach "break", das als Substantiv verwendet wird;
 </script>
+*  `[word="marche" & frpos="VER.*"]` – Findet alle Wörter, die "marche" lauten UND ein Verb sind, d.h. schließt alle diejenigen Fälle aus, in denen "marche" als Substantiv verwendet wird.
+
 </section>
 
 </section>
