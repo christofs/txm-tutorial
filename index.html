@@ -165,7 +165,7 @@ Suche nach allen Worten, die einer bestimmten Grundform zugehören.
 ## Part-of-Speech
 Suche nach allen Wortformen, die einer bestimmten grammatikalischen Kategorie (POS) zugehören.
 * `[enpos="NN"]` - findet die Substantive, sortiert nach ihren Häufigkeiten: "man", "hand", "face"
-* `[enpos="JJ"] - findet die Adjektive, wie "great", "old", "good"
+* `[enpos="JJ"]` - findet die Adjektive, wie "great", "old", "good"
 * (Das Inventar der POS-Tags ist ebenfalls sprachabhängig)
 </script>
 * `[frpos="NOM"]` - Suche nach Substantiven. Findet "maison", "guerre", "crime", etc. 
@@ -187,7 +187,7 @@ Suche nach allen Wortformen, die einer bestimmten grammatikalischen Kategorie (P
 Ein Suchbegriff, gefolgt von einem weiteren Suchbegriff.
 * Solche Abfragen können mit dem Query Editor ("assistant de requêtes") erstellt werden; dort auf "mot supplémentaire" klicken.
 * `[word="Sherlock"][word="Holmes"]` - gibt die Anzahl der Treffer zurück, wo "Sherlock" gefolgt vom "Holmes" vorkommt; 
-* anderes Beispiel: [word="Baker"][word="Street"]
+* anderes Beispiel: `[word="Baker"][word="Street"]`
 * Case-sensitive
 Die verschiedenen Suchkombinationen sind möglich:
 * `[enpos = "JJ"][enlemma="day"]`- Suche nach dem Lemma "day", das auf ein Adjektiv folgt.
@@ -213,7 +213,7 @@ Mehrere Suchbegriffe, mit Minimal- und Maximalabstand dazwischen:
 ## Kombination von Kriterien für ein Element
 Verknüpfung von Kriterien unterschiedlicher Art bezogen auf ein einziges Element
 * Bspw. Information über die Graphie eines Wortes mit seiner grammatikalischen Kategorie:
-* [word="break" & enpos="V.*"] und [word="break" & enpos="N.*"] - im ersten Fall suchen wir nach "break" als Verb und 
+* `[word="break" & enpos="V.*"]` und `[word="break" & enpos="N.*"]` - im ersten Fall suchen wir nach "break" als Verb und 
 in zweitem Fall nach "break", das als Substantiv verwendet wird;
 </script>
 *  `[word="marche" & frpos="VER.*"]` – Findet alle Wörter, die "marche" lauten UND ein Verb sind, d.h. schließt alle diejenigen Fälle aus, in denen "marche" als Substantiv verwendet wird.
