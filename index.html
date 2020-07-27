@@ -242,10 +242,13 @@ im zweiten Fall nach "break", das als Substantiv verwendet wird;
 <section data-markdown>
 <script type="text/template">
 ## Beispielabfragen:
+* `[word=".*less" & enpos="JJ"]` - findet alle Adjektive, die beliebeig lang sind und mit "less" enden;
+* `[word="con.*ion"]` - findet alle Wörter, die mit "con" anfangen, mit "ion" enden und beliebeig lang sind;
+* `[word="go.?"]`- findet Wörte, die mit "go" anfangen und ein oder kein weiteres Zeichen haben, z.B. "go", "got", aber nicht "goes" (warum?)
+</script>
 * `[word="to.?"]` - Wildcard innerhalb des Elements. Wort, das "to" und keinen oder einen weiterer Buchstabe hat; findet: "toi" und "ton", aber nicht "toit" (zwei weitere Buchstaben)
 * `[word="f.*ique"]` – Wörter, die mit "f" anfangen, dann mehrere beliebige Zeichen haben und mit "ique" aufhören; findet: "fabrique", "fanatique" und "fantastique', etc.
 * `[word=".*ique" & frpos="ADJ"]` – Wörter, die auf "ique" enden und Adjektive sind; findet: bspw. "unique", "magnifique" und "domestique", etc.
-</script>
 </section>
 
 <section data-markdown>
@@ -261,18 +264,22 @@ im zweiten Fall nach "break", das als Substantiv verwendet wird;
 <section data-markdown>
 <script type="text/template">
 ## Beispielabfragen:
+* `[word="street"%c]` - Klein- und Großschreibung wird ignoriert: "Street", "street", "STREET"
+* `[word="the"][enpos="JJ"]{3}[enpos="NN"]` - findet alle Sequenzen, die mit "the" starten gefolgt von 3 Adjektiven und einem Substantiv: "the poor sick young lady".
+</script>
 * `[word="dieu"%c]` – Ignoriert Groß- und Kleinschreibung; findet: "dieu" und "Dieu" sowie DIEU.
 * `[word="la"][frpos="ADJ"]{2}[frpos="NOM"]` - Wildcard auf Ebene der Einheiten; Sequenzen, in denen erst das Wort "la" kommt, dann genau zwei Adjektive, dann ein Substantiv; findet bspw. "la pauvre jeune fille" oder "la douce petite voix". 
-</script>
 </section>
 
 <section data-markdown>
 <script type="text/template">
 ## Suche mit Alternativen
 Mehrere Suchbegriffe alternativ suchen (mit dem "|"-Zeichen)
-* `[word="ville|campagne"]` - Alternativen bezogen auf Einzelwörter; findet jeweils die Stellen, an denen "ville" oder "campagne" vorkommt. 
-* `[frpos="DET:*|PRO.*"]` - Alternativen bezogen auf die Wortart; Suche nach Artikeln oder Personalpronomina; findet u.a. "il", "qui", "se", "vous", "je", etc.
+* `[word="Sherlock|detective"]` - Suche nach "Sherlock" oder "detective" (bezogen auf Einzelnwörter);
+* `[enpos="IN*|PP.*"]` - Suche nach Personalpronomen oder Präposition (bezogen auf die Wortart)
 </script>
+* `[word="ville|campagne"]` - Alternativen bezogen auf Einzelwörter; findet jeweils die Stellen, an denen "ville" oder "campagne" vorkommt. 
+* `[frpos="DET.*|PRO.*"]` - Alternativen bezogen auf die Wortart; Suche nach Artikeln oder Personalpronomina; findet u.a. "il", "qui", "se", "vous", "je", etc.
 </section>
 
 </section>
@@ -288,18 +295,25 @@ Mehrere Suchbegriffe alternativ suchen (mit dem "|"-Zeichen)
 <script type="text/template">
 ## Unter-Korpus definieren
 Eine Teilmenge des Gesamtkorpus. 
+
+* Rechts-Klick auf `DOYLE`, dort `Sub-Corpus` auswählen. 
+* Dem Unterkorpus einen Namen geben, bspw. "genres". 
+* Im Reiter `simple` bleiben und die Einstellungen anpassen (Structure: `text` – Property: `decade`). 
+* Aus der sich öffnenden Liste der decades "1880s" auswählen, OK klicken. 
+* Für andere Kriterien das Vorgehen entsprechend anpassen oder die feiner zu steuernden Verfahren `Assisted` oder `Advanced` wählen.
+</script>
 * Rechts-Klick auf `ROMAN19`, dort `Sous-Corpus` auswählen. 
 * Dem Unterkorpus einen Namen geben, bspw. "genres". 
 * Im Reiter `simple` bleiben und die Einstellungen anpassen (Structure: `text` – Propriété: `subgenre`). 
 * Aus der sich öffnenden Liste der Genres "historical" auswählen, OK klicken. 
-* Für andere Kriterien das Vorgehen entsprechend anpassen oder die feiner zu steuernden Verfahren `assisté` oder `avancé` wählen.</script>
+* Für andere Kriterien das Vorgehen entsprechend anpassen oder die feiner zu steuernden Verfahren `assisté` oder `avancé` wählen.
 </section>
 
 <section data-markdown>
 <script type="text/template">
 ## Korpus partitionieren
 Das Korpus intern strukturieren.
-* Rechts-Klick auf `ROMAN19`, dort `Partition` auswählen. 
+* Rechts-Klick auf `DOYLE`, dort `Partition` auswählen. 
 * Dem geteilten Korpus einen Namen geben, bspw. "Jahrzehnte". 
 * Im Reiter `simple` bleiben und die Einstellungen passend einrichten: Structure: `text` – Propriété: `decades`). OK klicken.
 * Hier wird Gesamtkorpus automatisch nach den relevanten Klassen aufgeteilt.
