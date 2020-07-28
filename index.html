@@ -156,8 +156,9 @@ Suche nach graphischen Wortformen.
 Suche nach allen Worten, die einer bestimmten Grundform zugehören. 
 * `[enlemma="go"]` - hier werden alle Stellen gefunden, wo das Lemma "go" in verschiedenen Formen vorkommt: Wie z.B. "gone", "went", "going" usw.
 * Klein- und Großschreibung wird hier ignoriert: "Go" wird also auch gefunden;
-* (Sprachabhängig! `enlemma`, `frlemma`, `eslemma`, etc.)</script>
+* (Sprachabhängig! `enlemma`, `frlemma`, `eslemma`, etc.)
 * `[frlemma="aller"]` – findet alle Stellen, an denen das Lemma "aller" in seinen verschiedenen Formen vorkommt: "allait" und "irons" etc.
+</script>
 </section>
 
 <section data-markdown>
@@ -167,9 +168,9 @@ Suche nach allen Wortformen, die einer bestimmten grammatikalischen Kategorie (P
 * `[enpos="NN"]` - findet die Substantive, sortiert nach ihren Häufigkeiten: "man", "hand", "face"
 * `[enpos="JJ"]` - findet die Adjektive, wie "great", "old", "good"
 * (Das Inventar der POS-Tags ist ebenfalls sprachabhängig)
-</script>
 * `[frpos="NOM"]` - Suche nach Substantiven. Findet "maison", "guerre", "crime", etc. 
 * `[frpos="ADJ"]` – findet beliebige Adjektive: "grand", "élégant", etc. 
+</script>
 </section>
 
 </section>
@@ -189,12 +190,12 @@ Ein Suchbegriff, gefolgt von einem weiteren Suchbegriff.
 * `[word="Sherlock"][word="Holmes"]` - gibt die Anzahl der Treffer zurück, wo "Sherlock" gefolgt vom "Holmes" vorkommt; 
 * anderes Beispiel: `[word="Baker"][word="Street"]`
 * Case-sensitive
-Die verschiedenen Suchkombinationen sind möglich:
+* Die verschiedenen Suchkombinationen sind möglich:
 * `[enpos = "JJ"][enlemma="day"]`- Suche nach dem Lemma "day", das auf ein Adjektiv folgt.
-</script>
 * `[word="elle"][word="dit"]` – Findet die Anzahl der Stellen, an denen "elle dit" vorkommt.
 Man kann hier auch verschiedene Suchmodi kombinieren: 
 * `[frlemma="maison"][frpos="ADJ"]` - Findet Treffer, bei denen auf das Lemma "maison" ein Adjektiv folgt. Bspw.: "maison paternelle", "maison jaune" und "maisons basses".
+</script>  
 </section>
 
 <section data-markdown>
@@ -203,9 +204,9 @@ Man kann hier auch verschiedene Suchmodi kombinieren:
 Mehrere Suchbegriffe, mit Minimal- und Maximalabstand dazwischen:
 * `[enpos="V.*"][]{0,3}[enlemma="police"]`- findet alle Treffer eines Verbes, gefolgt  von dem Lemma "police" mit Abstand zwischen null und drei Worte
 * z.B. werden folgende Wortkombinationen gefunden: "said the police", "communicated with the police", "known as the British police"
-</script>
 * `[frpos="VER.*"][]{0,5}[frlemma="argent"]` – Findet alle Kombinationen eines Verbs, gefolgt von null bis fünf anderen Worten, gefolgt von dem Lemma "argent"; 
 * Beispielsweise: "dépense mon argent" und "avais beaucoup d'argent". 
+</script>
 </section>
 
 <section data-markdown>
@@ -215,9 +216,8 @@ Verknüpfung von Kriterien unterschiedlicher Art bezogen auf ein einziges Elemen
 * Bspw. Information über die Graphie eines Wortes mit seiner grammatikalischen Kategorie:
 * `[word="break" & enpos="V.*"]` und `[word="break" & enpos="N.*"]` - im ersten Fall suchen wir nach "break" als Verb und 
 im zweiten Fall nach "break", das als Substantiv verwendet wird;
-</script>
 *  `[word="marche" & frpos="VER.*"]` – Findet alle Wörter, die "marche" lauten UND ein Verb sind, d.h. schließt alle diejenigen Fälle aus, in denen "marche" als Substantiv verwendet wird.
-
+</script>
 </section>
 
 </section>
@@ -245,10 +245,10 @@ im zweiten Fall nach "break", das als Substantiv verwendet wird;
 * `[word=".*less" & enpos="JJ"]` - findet alle Adjektive, die beliebig lang sind und mit "less" enden;
 * `[word="con.*ion"]` - findet alle Wörter, die mit "con" anfangen, mit "ion" enden und beliebig lang sind;
 * `[word="go.?"]`- findet Wörte, die mit "go" anfangen und ein oder kein weiteres Zeichen haben, z.B. "go", "got", aber nicht "goes" (warum?)
-</script>
 * `[word="to.?"]` - Wildcard innerhalb des Elements. Wort, das "to" und keinen oder einen weiterer Buchstabe hat; findet: "toi" und "ton", aber nicht "toit" (zwei weitere Buchstaben)
 * `[word="f.*ique"]` – Wörter, die mit "f" anfangen, dann mehrere beliebige Zeichen haben und mit "ique" aufhören; findet: "fabrique", "fanatique" und "fantastique', etc.
 * `[word=".*ique" & frpos="ADJ"]` – Wörter, die auf "ique" enden und Adjektive sind; findet: bspw. "unique", "magnifique" und "domestique", etc.
+</script>   
 </section>
 
 <section data-markdown>
@@ -266,9 +266,9 @@ im zweiten Fall nach "break", das als Substantiv verwendet wird;
 ## Beispielabfragen:
 * `[word="street"%c]` - Klein- und Großschreibung wird ignoriert: "Street", "street", "STREET"
 * `[word="the"][enpos="JJ"]{3}[enpos="NN"]` - findet alle Sequenzen, die mit "the" starten gefolgt von 3 Adjektiven und einem Substantiv: "the poor sick young lady".
-</script>
 * `[word="dieu"%c]` – Ignoriert Groß- und Kleinschreibung; findet: "dieu" und "Dieu" sowie DIEU.
-* `[word="la"][frpos="ADJ"]{2}[frpos="NOM"]` - Wildcard auf Ebene der Einheiten; Sequenzen, in denen erst das Wort "la" kommt, dann genau zwei Adjektive, dann ein Substantiv; findet bspw. "la pauvre jeune fille" oder "la douce petite voix". 
+* `[word="la"][frpos="ADJ"]{2}[frpos="NOM"]` - Wildcard auf Ebene der Einheiten; Sequenzen, in denen erst das Wort "la" kommt, dann genau zwei Adjektive, dann ein Substantiv; findet bspw. "la pauvre jeune fille" oder "la douce petite voix".
+</script> 
 </section>
 
 <section data-markdown>
@@ -277,9 +277,9 @@ im zweiten Fall nach "break", das als Substantiv verwendet wird;
 Mehrere Suchbegriffe alternativ suchen (mit dem "|"-Zeichen)
 * `[word="Sherlock|detective"]` - Suche nach "Sherlock" oder "detective" (bezogen auf Einzelnwörter);
 * `[enpos="IN*|PP.*"]` - Suche nach Personalpronomen oder Präposition (bezogen auf die Wortart)
-</script>
 * `[word="ville|campagne"]` - Alternativen bezogen auf Einzelwörter; findet jeweils die Stellen, an denen "ville" oder "campagne" vorkommt. 
 * `[frpos="DET.*|PRO.*"]` - Alternativen bezogen auf die Wortart; Suche nach Artikeln oder Personalpronomina; findet u.a. "il", "qui", "se", "vous", "je", etc.
+</script>   
 </section>
 
 </section>
@@ -301,12 +301,12 @@ Eine Teilmenge des Gesamtkorpus.
 * Im Reiter `simple` bleiben und die Einstellungen anpassen (Structure: `text` – Property: `decade`). 
 * Aus der sich öffnenden Liste der decades "1880s" auswählen, OK klicken. 
 * Für andere Kriterien das Vorgehen entsprechend anpassen oder die feiner zu steuernden Verfahren `Assisted` oder `Advanced` wählen.
-</script>
 * Rechts-Klick auf `ROMAN19`, dort `Sous-Corpus` auswählen. 
 * Dem Unterkorpus einen Namen geben, bspw. "genres". 
 * Im Reiter `simple` bleiben und die Einstellungen anpassen (Structure: `text` – Propriété: `subgenre`). 
 * Aus der sich öffnenden Liste der Genres "historical" auswählen, OK klicken. 
 * Für andere Kriterien das Vorgehen entsprechend anpassen oder die feiner zu steuernden Verfahren `assisté` oder `avancé` wählen.
+</script>  
 </section>
 
 <section data-markdown>
