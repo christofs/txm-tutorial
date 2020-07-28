@@ -189,7 +189,6 @@ Ein Suchbegriff, gefolgt von einem weiteren Suchbegriff.
 * Solche Abfragen können mit dem Query Editor ("assistant de requêtes") erstellt werden; dort auf "mot supplémentaire" klicken.
 * `[word="Sherlock"][word="Holmes"]` - gibt die Anzahl der Treffer zurück, wo "Sherlock" gefolgt vom "Holmes" vorkommt; 
 * anderes Beispiel: `[word="Baker"][word="Street"]`
-* Case-sensitive
 * Die verschiedenen Suchkombinationen sind möglich:
 * `[enpos = "JJ"][enlemma="day"]`- Suche nach dem Lemma "day", das auf ein Adjektiv folgt.
 * `[word="elle"][word="dit"]` – Findet die Anzahl der Stellen, an denen "elle dit" vorkommt.
@@ -245,10 +244,10 @@ im zweiten Fall nach "break", das als Substantiv verwendet wird;
 * `[word=".*less" & enpos="JJ"]` - findet alle Adjektive, die beliebig lang sind und mit "less" enden;
 * `[word="con.*ion"]` - findet alle Wörter, die mit "con" anfangen, mit "ion" enden und beliebig lang sind;
 * `[word="go.?"]`- findet Wörte, die mit "go" anfangen und ein oder kein weiteres Zeichen haben, z.B. "go", "got", aber nicht "goes" (warum?)
-* `[word="to.?"]` - Wildcard innerhalb des Elements. Wort, das "to" und keinen oder einen weiterer Buchstabe hat; findet: "toi" und "ton", aber nicht "toit" (zwei weitere Buchstaben)
 * `[word="f.*ique"]` – Wörter, die mit "f" anfangen, dann mehrere beliebige Zeichen haben und mit "ique" aufhören; findet: "fabrique", "fanatique" und "fantastique', etc.
 * `[word=".*ique" & frpos="ADJ"]` – Wörter, die auf "ique" enden und Adjektive sind; findet: bspw. "unique", "magnifique" und "domestique", etc.
 </script>   
+* `[word="to.?"]` - Wildcard innerhalb des Elements. Wort, das "to" und keinen oder einen weiterer Buchstabe hat; findet: "toi" und "ton", aber nicht "toit" (zwei weitere Buchstaben)
 </section>
 
 <section data-markdown>
@@ -301,12 +300,12 @@ Eine Teilmenge des Gesamtkorpus.
 * Im Reiter `simple` bleiben und die Einstellungen anpassen (Structure: `text` – Property: `decade`). 
 * Aus der sich öffnenden Liste der decades "1880s" auswählen, OK klicken. 
 * Für andere Kriterien das Vorgehen entsprechend anpassen oder die feiner zu steuernden Verfahren `Assisted` oder `Advanced` wählen.
+</script>
 * Rechts-Klick auf `ROMAN19`, dort `Sous-Corpus` auswählen. 
 * Dem Unterkorpus einen Namen geben, bspw. "genres". 
 * Im Reiter `simple` bleiben und die Einstellungen anpassen (Structure: `text` – Propriété: `subgenre`). 
 * Aus der sich öffnenden Liste der Genres "historical" auswählen, OK klicken. 
 * Für andere Kriterien das Vorgehen entsprechend anpassen oder die feiner zu steuernden Verfahren `assisté` oder `avancé` wählen.
-</script>  
 </section>
 
 <section data-markdown>
